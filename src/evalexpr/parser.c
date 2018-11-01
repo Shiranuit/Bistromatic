@@ -71,8 +71,6 @@ number_t *parse_val(char **str, operator_t **list, all_t *all)
 {
     number_t *value;
 
-    if (base_to_int((*str)[0], all->base) == -1)
-        return (exception(SYNTAX_ERROR_MSG, all));
     if (readc(str) == all->ops[OP_OPEN_PARENT_IDX]) {
         all->paranthesis = all->paranthesis + 1;
         value = parse_expression(str, 0, list, all);
@@ -82,6 +80,8 @@ number_t *parse_val(char **str, operator_t **list, all_t *all)
         return (exception(SYNTAX_ERROR_MSG, all));
     }
     move(str, -1);
+    if (base_to_int((*str)[0], all->base) == -1)
+        return (exception(SYNTAX_ERROR_MSG, all));
     if ((*str)[0] == '\0')
         return (exception(SYNTAX_ERROR_MSG, all));
     return (string_to_number(str, all->base));
