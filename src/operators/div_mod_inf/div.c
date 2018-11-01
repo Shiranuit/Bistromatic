@@ -7,7 +7,6 @@
 
 #include "all.h"
 
-<<<<<<< Updated upstream
 // number_t *calc_div(number_t *a, number_t *b, base_t *base, number_t *result)
 // {
 //     char *r = malloc(sizeof(char) * a->len);
@@ -41,7 +40,6 @@
 //         result = calc_div(a, b, base, result);
 //     result->neg = a->neg ^ b->neg;
 //     return (clear_zero(create_number(result->str, result->len, result->neg, 2), base));
-=======
 // void calc_div(number_t *a, int b, int size, char *result)
 // {
 //
@@ -73,5 +71,4 @@
 //     // free_number(a);
 //     // free_number(b);
 //     // return (clear_zero(result, base));
->>>>>>> Stashed changes
 // }

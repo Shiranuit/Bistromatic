@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** check_number
+** File description:
+** check_number
+*/
+
 #include "all.h"
 
 int equalZero(number_t *a, base_t *base)
