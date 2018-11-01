@@ -8,26 +8,19 @@
 #include "all.h"
 #include <stdlib.h>
 
-number_t *called_mn(number_t *a, number_t *b, base_t *base)
+int struct_cmp(number_t *a, number_t *b, base_t *base)
 {
-    for (int i = a->len - 1; i > -1; i--) {
-        if (get_num(a, i, base) < get_num(b, i, base))
-            return (a);
+    if (a->len > b->len)
+        return (1);
+    if (a->len < b->len)
+        return (-1);
+    for (int i = a->len - 1; i >= 0; i--) {
         if (get_num(a, i, base) > get_num(b, i, base))
-            return (b);
-    }
-    return (a);
-}
-
-number_t *called_mx(number_t *a, number_t *b, base_t *base)
-{
-    for (int i = a->len; i > -1; i--) {
-        if (get_num(a, i, base) > get_num(b, i, base))
-            return (a);
+            return (1);
         if (get_num(a, i, base) < get_num(b, i, base))
-            return (b);
+            return (-1);
     }
-    return (a);
+    return (0);
 }
 
 number_t *called_min(number_t *a, number_t *b, int use_sign, base_t *base)
@@ -39,11 +32,11 @@ number_t *called_min(number_t *a, number_t *b, int use_sign, base_t *base)
         return (a);
     if (a->neg == 0 && b->neg == 1 && use_sign == 1)
         return (b);
-    if (a->len < b->len)
+    if (struct_cmp(a,b,base) == -1) {
         return (a);
-    if (a->len > b->len)
+    } else {
         return (b);
-    return (called_mn(a, b, base));
+    }
 }
 
 number_t *called_max(number_t *a, number_t *b, int use_sign, base_t *base)
@@ -55,9 +48,9 @@ number_t *called_max(number_t *a, number_t *b, int use_sign, base_t *base)
         return (a);
     if (a->neg == 1 && b->neg == 0 && use_sign == 1)
         return (b);
-    if (a->len > b->len)
+    if (struct_cmp(a,b,base) == 1) {
         return (a);
-    if (a->len < b->len)
+    } else {
         return (b);
-    return (called_mx(a, b, base));
+    }
 }
