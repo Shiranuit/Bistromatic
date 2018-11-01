@@ -25,6 +25,11 @@ operator_t **init_oplist(char *ops)
     operators[0] = new_op(ops + OP_PLUS_IDX, 0, 1, &add);
     operators[1] = new_op(ops + OP_SUB_IDX, 0, 1, &sub);
     operators[2] = new_op(ops + OP_MULT_IDX, 1, 1, &mul);
+<<<<<<< Updated upstream
     operators[3] = 0;
+=======
+    // operators[3] = new_op(ops + OP_DIV_IDX, 1, 1, &diiv);
+    operators[4] = 0;
+>>>>>>> Stashed changes
     return (operators);
 }
