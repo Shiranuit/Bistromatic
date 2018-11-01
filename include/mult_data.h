@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** mult_data.h
+** File description:
+** multiplication struct header
+*/
+
 #ifndef MULT_DATA_H
 #define MULT_DATA_H
 

@@ -1,6 +1,9 @@
-
-
-
+/*
+** EPITECH PROJECT, 2018
+** convert_base.h
+** File description:
+** base gestion header
+*/
 
 #ifndef CONVERT_BASE_H
 #define CONVERT_BASE_H

@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** check_number.h
+** File description:
+** number_t gestion header
+*/
+
 #ifndef CHECK_NUMBER_H
 #define CHECK_NUMBER_H
 

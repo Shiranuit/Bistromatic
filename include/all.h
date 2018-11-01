@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** all.h
+** File description:
+** include all header
+*/
+
 #ifndef ALL_H
 #define ALL_H
 #include "number_manager.h"

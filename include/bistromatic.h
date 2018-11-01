@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** Bistromatic.h
+** File description:
+** Bistromatic exeptions header
+*/
+
 #ifndef BISTROMATIC_H
 #define BISTROMATIC_H
 
