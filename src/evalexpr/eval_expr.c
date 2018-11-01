@@ -10,7 +10,7 @@
 
 void free_list(operator_t **list)
 {
-    for (int i = 0; list[i] != '\0'; i++)
+    for (int i = 0; list[i]; i++)
         free(list[i]);
     free(list);
 }

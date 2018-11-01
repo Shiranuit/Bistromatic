@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** CPool_bistro-matic_2018
-** File description:
-** all.h
-*/
-
 #ifndef ALL_H
 #define ALL_H
 #include "number_manager.h"
@@ -26,7 +19,7 @@ typedef struct all_s {
 #include "my.h"
 #include "parser.h"
 #include "utils.h"
-number_t *called_mx(number_t *, number_t *, base_t *);
-number_t *called_mn(number_t *, number_t *, base_t *);
+#include "check_number.h"
+#include "mult_data.h"
 
 #endif /* ALL_H */

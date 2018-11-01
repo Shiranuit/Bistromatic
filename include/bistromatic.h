@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** CPool_bistro-matic_2018
-** File description:
-** bistro.h
-*/
-
 #ifndef BISTROMATIC_H
 #define BISTROMATIC_H
 

@@ -8,8 +8,11 @@
 #include "all.h"
 #include <stdlib.h>
 
-number_t *unm(number_t *right)
+number_t *unm(number_t *right, all_t *all)
 {
-    right->neg = !right->neg;
-    return (right);
+    if (*(all->exit) == -1) {
+        right->neg = !right->neg;
+        return (right);
+    }
+    return (0);
 }
