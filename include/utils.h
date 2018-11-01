@@ -10,6 +10,5 @@
 #include "number_manager.h"
 
 void print_number(number_t *);
-char *create_char(int, base_t *);
 
 #endif /* UTILS_H */

@@ -34,15 +34,15 @@ operator_t *readoplevel(char **str, int lvl, operator_t **ls, all_t *all)
 
 number_t *parse_expression(char **str, int lvl, operator_t **ls, all_t *all)
 {
-    number_t *left = 0;
-    operator_t *op = 0;
+    number_t *left;
+    operator_t *op;
 
     if (lvl + 1 <= OPLVMAX)
         left = parse_expression(str, lvl + 1, ls, all);
     else
         left = parse_unm(str, ls, all);
     op = readoplevel(str, lvl, ls, all);
-    while (op && *(all->exit) == -1) {
+    while (op) {
         number_t *right = parse_expression(str, lvl + 1, ls, all);
         if (*(all->exit) > -1)
             return (free_number(left));
@@ -62,7 +62,7 @@ number_t *parse_unm(char **str, operator_t **list, all_t *all)
     skip_space(str);
     if ((*str)[0] == '-') {
         move(str, 1);
-        return (unm(parse_unm(str, list, all), all));
+        return (unm(parse_unm(str, list, all)));
     }
     return (parse_val(str, list, all));
 }
@@ -71,8 +71,6 @@ number_t *parse_val(char **str, operator_t **list, all_t *all)
 {
     number_t *value;
 
-    if (base_to_int((*str)[0], all->base) == -1)
-        return (exception(SYNTAX_ERROR_MSG, all));
     if (readc(str) == all->ops[OP_OPEN_PARENT_IDX]) {
         all->paranthesis = all->paranthesis + 1;
         value = parse_expression(str, 0, list, all);

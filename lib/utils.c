@@ -23,13 +23,3 @@ void print_number(number_t *a)
         write(1, "-", 1);
     write(1, a->str, a->len);
 }
-
-char *create_char(int size, base_t *base)
-{
-    char *data = malloc(sizeof(char) * size);
-
-    for (int i = 0; i < size - 1; i++)
-        data[i] = int_to_base(0, base);
-    data[size - 1] = '\0';
-    return (data);
-}

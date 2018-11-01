@@ -10,8 +10,8 @@
 
 number_t *called_mn(number_t *a, number_t *b, base_t *base)
 {
-    for (int i = a->len - 1; i > -1; i--) {
-        if (get_num(a, i, base) < get_num(b, i, base))
+    for (int i = 0; i < a->len - 1; i++) {
+            if (get_num(a, i, base) < get_num(b, i, base))
             return (a);
         if (get_num(a, i, base) > get_num(b, i, base))
             return (b);
@@ -21,7 +21,7 @@ number_t *called_mn(number_t *a, number_t *b, base_t *base)
 
 number_t *called_mx(number_t *a, number_t *b, base_t *base)
 {
-    for (int i = a->len; i > -1; i--) {
+    for (int i = 0; i < a->len - 1; i++) {
         if (get_num(a, i, base) > get_num(b, i, base))
             return (a);
         if (get_num(a, i, base) < get_num(b, i, base))
