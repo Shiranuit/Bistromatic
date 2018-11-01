@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** Karatsuba
+** File description:
+** fast multiplication
+*/
+
 #include "all.h"
 
 number_t *getLower(number_t *a, int n, base_t *base)

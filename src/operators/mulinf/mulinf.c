@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** mulinf
+** File description:
+** mulinf
+*/
+
 #include "all.h"
 
 void called_mul(number_t *a, int b, base_t *base, char *new_str)
