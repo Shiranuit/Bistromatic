@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2018
-** CPool_bistro-matic_2018
-** File description:
-** mult
-*/
-
 #include "all.h"
 
 void called_mul(number_t *a, int b, base_t *base, char *new_str)
@@ -43,14 +36,12 @@ number_t *mulNums(number_t *a, number_t *b, base_t *base)
 {
     number_t *min = called_min(a, b, 0, base);
     number_t *max = called_max(a, b, 0, base);
-    int size = a->len + b->len - 1;
-    char *add_str = malloc(sizeof(char) * (size));
-    char *data = malloc(sizeof(char) * (max->len + 1));
+    int size = a->len + b->len;
+    char *add_str = create_char(size, base);
+    char *data = create_char(max->len + 1, base);
     number_t *n_data = create_number(data, max->len + 1, 0, 2);
     number_t *result = create_number(add_str, size, 0, 2);
 
-    for (int i = 0; i < size; i++)
-        add_str[size - i - 1] = int_to_base(0, base);
     for (int i = 0; i < min->len - 1; i++) {
         called_mul(max, get_num(min, i, base), base, data);
         mul_add(result, n_data, base, i);
@@ -60,15 +51,27 @@ number_t *mulNums(number_t *a, number_t *b, base_t *base)
     return (result);
 }
 
-number_t *mul(number_t *a, number_t *b, base_t *base, all_t *all)
+number_t *recmul(number_t *a, number_t *b, base_t *base, all_t *all)
 {
     number_t *result;
 
-    clear_zero(a, base);
-    clear_zero(b, base);
-    result = mulNums(a, b, base);
+    if (equalZero(a, base) || equalZero(b, base) || !a || !b)
+        return (create_zero(base));
+    if (equalOne(a, base) || equalOne(b, base))
+        return (equalOne(a, base) ? b : a);
+    if (a->len - 1 < 80 && b->len - 1 < 80)
+        result = mulNums(a, b, base);
+    else //if (a->len - 1 < 240 && b->len - 1 < 240)
+        result = karatsuba_mul(a, b, base, all);
+    // else
+    //     result = mulNums(a, b, base);
+    return (result);
+}
 
-    (void)all;
+number_t *mul(number_t *a, number_t *b, base_t *base, all_t *all)
+{
+    number_t *result = recmul(a, b, base, all);
+
     free_number(a);
     free_number(b);
     return (clear_zero(result, base));
