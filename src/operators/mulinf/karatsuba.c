@@ -16,7 +16,7 @@ number_t *getLower(number_t *a, int n)
 
 number_t *getUpper(number_t *a, int n)
 {
-    if (a->len - 1 <= n) {
+    if (a->len - 1 <= n)
         return (create_number(a->str, 0, 0, 1));
     return (create_number(a->str, a->len - n, 0, 1));
 }
