@@ -26,16 +26,13 @@ number_t *do_div(number_t *a, number_t *b, base_t *base)
     number_t *cnt = create_number(count, 3, 0, 2);
     int res = 0;
 
-
     mv = struct_ncmp(a, b, base, mv + 1) == 1 ? mv + 1 : mv;
     count[2] = '\0';
     while (mv > -1) {
-        //printf("%s %s %d %d\n", a->str, b->str, struct_ncmp(a, b, base, mv), mv);
         if  (struct_ncmp(a, b, base, mv) == -1) {
             mv--;
             count[1] = int_to_base(res % base->len, base);
             count[0] = int_to_base(res / base->len, base);
-            //printf("CNT=%s MV=%d\n", count, mv + 1);
             mul_add(result, cnt, base, mv + 1);
             res = 0;
         }
@@ -51,14 +48,14 @@ number_t *do_div(number_t *a, number_t *b, base_t *base)
 number_t *divinf(number_t *a, number_t *b, base_t *base, all_t *all)
 {
     number_t *result;
+    int cmp = struct_cmp(a, b, base);
 
-    (void) all;
-    clear_zero(a, base);
-    clear_zero(b, base);
     if (equalZero(b, base))
-            return (exception(ERROR_MSG, all));
-    if (struct_cmp(a, b, base) == -1)
+        return (exception(ERROR_MSG, all));
+    if (cmp == -1)
         return (create_zero(base));
+    if (cmp == 0)
+        return (create_one(base));
     result = clear_zero(do_div(a, b, base), base);
     result->neg = a->neg ^ b->neg;
     free_number2(a, b);

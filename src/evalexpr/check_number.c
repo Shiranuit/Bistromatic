@@ -34,6 +34,15 @@ number_t *create_zero(base_t *base)
     return (create_number(new_str, 2, 0, 2));
 }
 
+number_t *create_one(base_t *base)
+{
+    char *new_str = malloc(sizeof(char) * 2);
+
+    new_str[0] = int_to_base(1, base);
+    new_str[1] = '\0';
+    return (create_number(new_str, 2, 0, 2));
+}
+
 void *free_number2(number_t *a, number_t *b)
 {
     free_number(a);
