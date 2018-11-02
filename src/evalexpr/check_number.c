@@ -34,6 +34,13 @@ number_t *create_zero(base_t *base)
     return (create_number(new_str, 2, 0, 2));
 }
 
+void *free_number2(number_t *a, number_t *b)
+{
+    free_number(a);
+    free_number(b);
+    return (0);
+}
+
 
 number_t *copy_number(number_t *a)
 {

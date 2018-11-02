@@ -21,11 +21,11 @@ operator_t *new_op(char const *op, int lvl, int length, OPERAND)
 
 operator_t **init_oplist(char *ops)
 {
-    operator_t **operators = malloc(sizeof(operator_t *) * 4);
+    operator_t **operators = malloc(sizeof(operator_t *) * 5);
     operators[0] = new_op(ops + OP_PLUS_IDX, 0, 1, &add);
     operators[1] = new_op(ops + OP_SUB_IDX, 0, 1, &sub);
     operators[2] = new_op(ops + OP_MULT_IDX, 1, 1, &mul);
-    operators[3] = 0;
-    // operators[3] = new_op(ops + OP_DIV_IDX, 1, 1, &diiv);
+    operators[3] = new_op(ops + OP_DIV_IDX, 1, 1, &divinf);
+    operators[4] = 0;
     return (operators);
 }

@@ -25,7 +25,7 @@ number_t *add(number_t *, number_t *, base_t *, all_t *);
 number_t *sub(number_t *, number_t *, base_t *, all_t *);
 number_t *mul(number_t *, number_t *, base_t *, all_t *);
 number_t *karatsuba_mul(number_t *, number_t *, base_t *, all_t *);
-// number_t *diiv(number_t *, number_t *, base_t *, all_t *);
+number_t *divinf(number_t *, number_t *, base_t *, all_t *);
 number_t *unm(number_t *, all_t *);
 
 #endif /* OPERATOR_H */

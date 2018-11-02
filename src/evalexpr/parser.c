@@ -35,23 +35,24 @@ operator_t *readoplevel(char **str, int lvl, operator_t **ls, all_t *all)
 number_t *parse_expression(char **str, int lvl, operator_t **ls, all_t *all)
 {
     number_t *left = 0;
+    number_t *right = 0;
+    number_t *result = 0;
     operator_t *op = 0;
 
     if (lvl + 1 <= OPLVMAX)
         left = parse_expression(str, lvl + 1, ls, all);
     else
         left = parse_unm(str, ls, all);
-    op = readoplevel(str, lvl, ls, all);
-    while (op && *(all->exit) == -1) {
-        number_t *right = parse_expression(str, lvl + 1, ls, all);
+    while ((op = readoplevel(str, lvl, ls, all)) && *(all->exit) == -1) {
+         right = parse_expression(str, lvl + 1, ls, all);
         if (*(all->exit) > -1)
-            return (free_number(left));
-        number_t *result = op->func(left, right, all->base, all);
-        left = result;
-        op = readoplevel(str, lvl, ls, all);
+            return (free_number2(left, right));
+        result = op->func(left, right, all->base, all);
+        if (*(all->exit) == -1)
+            left = result;
     }
     if (*(all->exit) > -1)
-        return (free_number(left));
+        return (free_number2(left, right));
     return (left);
 }
 
