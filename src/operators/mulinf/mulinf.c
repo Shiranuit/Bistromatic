@@ -65,7 +65,7 @@ number_t *recmul(number_t *a, number_t *b, base_t *base, all_t *all)
     if (equalZero(a, base) || equalZero(b, base) || !a || !b)
         return (create_zero(base));
     if (equalOne(a, base) || equalOne(b, base))
-        return (equalOne(a, base) ? b : a);
+        return (equalOne(a, base) ? copy_number(b) : copy_number(a));
     if (a->len - 1 < 80 && b->len - 1 < 80)
         result = mulNums(a, b, base);
     else
