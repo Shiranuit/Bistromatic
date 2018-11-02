@@ -1,74 +1,110 @@
 /*
 ** EPITECH PROJECT, 2018
-** CPool_bistro-matic_2018
+** div
 ** File description:
-** div.c
+** div
 */
 
-#include "all.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
-// number_t *calc_div(number_t *a, number_t *b, base_t *base, number_t *result)
-// {
-//     char *r = malloc(sizeof(char) * a->len);
-//
-//     for (int i = 0, j = 0; i < a->len; i++) {
-//         if (b->len < 2 && b->str[0] != '0' && a->str[i] > b->str[0]) {
-//             r[j] = base_to_int(a->str[i], base) / base_to_int(b->str[0], base);
-//             j++;
-//         }
-//         if (b->len < 2 && b->str[0] != '0' && a->str[i] < b->str[0]) {
-//             r[j] = (base_to_int(a->str[i], base)
-//                 + base_to_int(a->str[i + 1], base))
-//                 / base_to_int(b->str[0], base);
-//             j++;
-//         }
-//         r[j] = int_to_base(r[j], base);
-//     }
-//     result = string_to_number(&r, base);
-//     return (result);
-// }
-//
-// number_t *diiv(number_t *a, number_t *b, base_t *base, all_t *all)
-// {
-//     number_t *result;
-//
-//     (void)all;
-//     if (a->len < b->len) {
-//         return (create_number(result->str, result->len, 0, 2));
-//     }
-//     if (a->len > b->len)
-//         result = calc_div(a, b, base, result);
-//     result->neg = a->neg ^ b->neg;
-//     return (clear_zero(create_number(result->str, result->len, result->neg, 2), base));
-// void calc_div(number_t *a, int b, int size, char *result)
-// {
-//
-// }
-//
-// number_t *do_div(number_t *a, number_t *b, base_t *base)
-// {
-//     // int size = a->len + 1
-//     // char *res = malloc(sizeof(char) * size)
-//     // number_t *min = called_min(a, b, 0, base);
-//     // number_t *max = called_max(a, b, 0, base);
-//     // number_t *result = create_number(res, size, 0, 2);
-//     // print_number(min);
-//     // print_number(max);
-//     //
-//     // calc_div(max, b, size, 0);
-//     // result->neg = a->neg^b->neg;
-//     // return (result);
-// }
-//
-// number_t *diiv(number_t *a, number_t *b, base_t *base, all_t *all)
-// {
-//     // number_t *result;
-//     //
-//     // (void)all;
-//     // clear_zero(a, base);
-//     // clear_zero(b, base);
-//     // result = do_div(a, b, base);
-//     // free_number(a);
-//     // free_number(b);
-//     // return (clear_zero(result, base));
-// }
+char *mul(char *a, char *b);
+char *sub(char *a, char *b);
+
+char *remove_zeros(char *str) //clear zero;
+{
+    while (*str == '0' && *(str + 1) != 0)
+        str += 1;
+    return (str);
+}
+
+int	cmp_strs(char *nbr1, char *nbr2)
+{
+    int len1 = strlen(nbr1); //a->len
+    int len2 = strlen(nbr2); //b->len
+
+    if (len1 > len2)
+        return (1);
+    else if (len1 < len2)
+        return (-1);
+    else
+        return (strcmp(nbr1, nbr2));
+    return (0);
+}
+
+char *calc_div(char *a, char *b, char **tab)
+{
+    char *count = strdup("0");
+    int val[3];
+    char *tmp = mul(b, count);
+
+    val[0] = strlen(a) + ((val[1] = strlen(b)) + (val[2] = -1)) * 0;
+    tmp[strlen(tmp)] = 0;
+    while (cmp_strs(tmp, a) < 0) {
+        count[0] += 1;
+        tmp = (count[0] == 58) ? mul(b, strdup("10")) : mul(b, count);
+    }
+    if (cmp_strs(tmp, a) != 0)
+        count[0] -= 1;
+    *tab = count;
+    return ((cmp_strs(tmp, a) == 0) ? "0" : sub(a, sub(tmp, b)));
+}
+
+void concer(char *a, char *b, char *tmp1, char *res, int *val)
+{
+    char *q = malloc(sizeof(char) * 2);
+    char *tmp = NULL;
+
+    while (a[val[0] - 1] != 0) {
+        tmp = calc_div(tmp1, b, &q);
+        res[val[0] - val[2]] = q[0] + 0 * (val[3] = strlen(tmp));
+        strcpy(tmp1, tmp);
+        tmp1[val[3]] = a[val[0]];
+        val[0] += 1;
+        tmp1[val[3] + 1] = 0;
+        tmp1 = remove_zeros(tmp1);
+    }
+    free(q);
+}
+
+char *infin_div_loop(char *a, char *b, int *val)
+{
+    char *tmp1 = malloc(sizeof(char) * (val[1] + 2));
+    char *res = malloc(sizeof(char) * (val[1] + 2));
+    char *q = malloc(sizeof(char) * 2);
+
+    if (tmp1 == NULL || res == NULL || q == NULL)
+        exit(84);
+    memset(res, 0, val[1]);
+    strcpy(tmp1, a);
+    tmp1[val[0]] = 0;
+    concer(a, b, tmp1, res, val);
+    return (res);
+}
+
+char *div_inf(char *a, char *b)
+{
+    char *res;
+    int val[4];
+
+    if (b[0] == '1' && b[1] == 0)
+        return (strdup(a));
+    if (cmp_strs(a, b) < 0)
+        return (strdup("0"));
+    val[1] = strlen(a);
+    val[2] = strlen(b);
+    val[0] = val[2];
+    res = infin_div_loop(a, b, val);
+    res[val[0] - val[2]] = 0;
+    return (res);
+}
+
+int main(int ac, char **av)
+{
+    if (ac != 3)
+        return (84);
+    printf("%s\n", div_inf(av[1], av[2]));
+    return (0);
+}
