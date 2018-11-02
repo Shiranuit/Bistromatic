@@ -17,16 +17,16 @@ typedef struct all_s {
     int *exit;
 } all_t;
 
+#include "called_func.h"
 #include "operator.h"
 #include "convert_base.h"
 #include "bistromatic.h"
 #include "buffer.h"
-#include "called_func.h"
 #include "exception.h"
 #include "my.h"
 #include "parser.h"
 #include "utils.h"
 #include "check_number.h"
-#include "mult_data.h"
+#include "karatsuba.h"
 
 #endif /* ALL_H */

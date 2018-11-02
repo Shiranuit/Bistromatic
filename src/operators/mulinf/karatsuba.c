@@ -7,91 +7,61 @@
 
 #include "all.h"
 
-number_t *getLower(number_t *a, int n, base_t *base)
+number_t *getLower(number_t *a, int n)
 {
-    char *new_str = create_char(n + 1, base);
-    int j = 0;
-
-    for (int i = a->len - n - 1; i < a->len; i++, j++)
-        if (i > -1 && i < a->len - 1)
-            new_str[j] = a->str[i];
-    return (create_number(new_str, n + 1, 0, 2));
-}
-
-number_t *getUpper(number_t *a, int n, base_t *base)
-{
-    char *new_str;
-    int j = 0;
-    int sz = a->len - n * 2;
-
     if (a->len - 1 <= n)
-        return (create_zero(base));
-    new_str = create_char(n + 1, base);
-    for (int i = sz - 1; i < a->len - n - 1; i++, j++)
-        if (i > -1 && i < a->len - 1)
-            new_str[j] = a->str[i];
-    return (create_number(new_str, n + 1, 0, 2));
+        return (create_number(a->str, a->len, 0, 1));
+    return (create_number(a->str + a->len - n - 1, n + 1, 0, 1));
 }
 
-void free_4(number_t *a, number_t *b, number_t *c, number_t *d)
+number_t *getUpper(number_t *a, int n)
 {
-    free_number(a);
-    free_number(b);
-    free_number(c);
-    if (d != 0)
-        free_number(d);
+    if (a->len - 1 <= n) {
+        return (create_number(a->str, 0, 0, 1));
+    return (create_number(a->str, a->len - n, 0, 1));
 }
 
-number_t *couple(base_t *base, all_t *all, mult_data_t *info)
+void free_karatsuba(karatsuba_t *kara)
 {
-    number_t *result;
-    number_t *x;
-    number_t *y;
-
-    if (info->up == 1) {
-        x = getUpper(info->a, info->half, base);
-        y = getUpper(info->b, info->half, base);
-        result = recmul(x, y, base, all);
-    } else {
-        x = getLower(info->a, info->half, base);
-        y = getLower(info->b, info->half, base);
-        result = recmul(x, y, base, all);
-    }
-    free_number(x);
-    free_number(y);
-    free(info);
-    return (result);
+    free_number(kara->aHigh);
+    free_number(kara->aLow);
+    free_number(kara->bHigh);
+    free_number(kara->bLow);
+    free_number(kara->abHigh);
+    free_number(kara->abLow);
+    free_number(kara->aHL);
+    free_number(kara->bHL);
+    free_number(kara->res);
+    free(kara);
 }
 
-mult_data_t *create_mdata(number_t *a, number_t *b, int up, int half)
+void setup_uplow(number_t *a, number_t *b, karatsuba_t *kara, int half)
 {
-    mult_data_t *data = malloc(sizeof(mult_data_t));
-
-    data->up = up;
-    data->half = half;
-    data->a = a;
-    data->b = b;
-    return (data);
+    kara->aHigh = getUpper(a, half);
+    kara->aLow = getLower(a, half);
+    kara->bHigh = getUpper(b, half);
+    kara->bLow = getLower(b, half);
 }
 
 number_t *karatsuba_mul(number_t *a, number_t *b, base_t *base, all_t *all)
 {
+    karatsuba_t *kara = malloc(sizeof(karatsuba_t));
     int size = a->len + b->len + 1;
     int h = (a->len > b->len ? a->len : b->len) / 2;
     char *data = create_char(size, base);
     number_t *result = create_number(data, size, 0, 2);
-    number_t *x = couple(base, all, create_mdata(a, b, 1, h));
-    number_t *y = couple(base, all, create_mdata(a, b, 0, h));
-    number_t *cx = add(getUpper(a, h, base), getLower(a, h, base), base, all);
-    number_t *cy = add(getUpper(b, h, base), getLower(b, h, base), base, all);
-    number_t *e = recmul(cx, cy, base, all);
-    number_t *z = called_sub(e, x, base);
-    number_t *r = called_sub(z, y, base);
 
-    mul_add(result, x, base, 2 * h);
-    mul_add(result, r, base, h);
-    mul_add(result, y, base, 0);
-    free_4(x, y, cx, cy);
-    free_4(e, z, r, 0);
+    setup_uplow(a, b, kara, h);
+    kara->abHigh = recmul(kara->aHigh, kara->bHigh, base, all);
+    kara->abLow = recmul(kara->aLow, kara->bLow, base, all);
+    kara->aHL = called_add(kara->aHigh, kara->aLow, base);
+    kara->bHL = called_add(kara->bHigh, kara->bLow, base);
+    kara->res = recmul(kara->aHL, kara->bHL, base, all);
+    div_sub(kara->res, kara->abHigh, base, 0);
+    div_sub(kara->res, kara->abLow, base, 0);
+    mul_add(result, kara->abHigh, base, 2 * h);
+    mul_add(result, kara->res, base, h);
+    mul_add(result, kara->abLow, base, 0);
+    free_karatsuba(kara);
     return(result);
 }

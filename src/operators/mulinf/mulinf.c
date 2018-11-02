@@ -29,8 +29,8 @@ void mul_add(number_t *a, number_t *b, base_t *base, int mv)
 
     for (int i = 0; i < len - 1; i++) {
         sum = carry;
-            sum += get_num(a, i, base) > -1 ? get_num(a, i, base) : 0;
-            sum += get_num(b, i - mv, base);
+        sum += get_num(a, i, base) > -1 ? get_num(a, i, base) : 0;
+        sum += get_num(b, i - mv, base);
         carry = sum / base->len;
         if (sum > base->len - 1)
             sum = sum % base->len;

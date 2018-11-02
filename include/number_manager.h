@@ -28,5 +28,6 @@ number_t *clear_zero(number_t *, base_t *);
 number_t *string_to_number(char **, base_t *);
 void *free_number(number_t *);
 int get_num(number_t *, int, base_t *);
+number_t *copy_number(number_t *base);
 
 #endif /* NUMBER_MANAGER_H */

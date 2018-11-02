@@ -21,7 +21,11 @@ void print_number(number_t *a)
 {
     if (a->neg == 1 && a->len > 1 && a->str[0] != '0')
         write(1, "-", 1);
-    write(1, a->str, a->len - 1);
+    if (a->len > 1)
+        write(1, a->str, a->len - 1);
+    else
+        write(1, "0", 1);
+    write(1, "\n", 1);
 }
 
 char *create_char(int size, base_t *base)

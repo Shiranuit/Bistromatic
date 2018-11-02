@@ -15,5 +15,7 @@ number_t *called_add(number_t *, number_t *, base_t *);
 number_t *called_sub(number_t *, number_t *, base_t *);
 number_t *mulNums(number_t *, number_t *, base_t *);
 void mul_add(number_t *, number_t *, base_t *, int);
+void div_sub(number_t *a, number_t *b, base_t *base, int mv);
+number_t *recmul(number_t *, number_t *, base_t *, all_t *);
 
 #endif /* CALLED_CALC_H */

@@ -9,6 +9,8 @@
 
 int equalZero(number_t *a, base_t *base)
 {
+    if (a->len <= 0)
+        return (1);
     clear_zero(a, base);
     if (a->len == 2 && a->str[0] == base->base[0])
         return (1);
