@@ -54,7 +54,6 @@ number_t *mul_nums(number_t *a, number_t *b, base_t *base)
         mul_add(result, n_data, base, i);
     }
     free_number(n_data);
-    result->neg = a->neg ^ b->neg;
     return (result);
 }
 
@@ -77,6 +76,7 @@ number_t *mul(number_t *a, number_t *b, base_t *base, all_t *all)
 {
     number_t *result = recmul(a, b, base, all);
 
+    result->neg = a->neg ^ b->neg;
     free_number(a);
     free_number(b);
     return (clear_zero(result, base));
