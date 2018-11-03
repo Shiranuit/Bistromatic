@@ -39,7 +39,7 @@ void mul_add(number_t *a, number_t *b, base_t *base, int mv)
     a->str[0] = int_to_base(carry, base);
 }
 
-number_t *mulNums(number_t *a, number_t *b, base_t *base)
+number_t *mul_nums(number_t *a, number_t *b, base_t *base)
 {
     number_t *min = called_min(a, b, 0, base);
     number_t *max = called_max(a, b, 0, base);
@@ -62,12 +62,12 @@ number_t *recmul(number_t *a, number_t *b, base_t *base, all_t *all)
 {
     number_t *result;
 
-    if (equalZero(a, base) || equalZero(b, base) || !a || !b)
+    if (equal_zero(a, base) || equal_zero(b, base) || !a || !b)
         return (create_zero(base));
-    if (equalOne(a, base) || equalOne(b, base))
-        return (equalOne(a, base) ? copy_number(b) : copy_number(a));
+    if (equal_one(a, base) || equal_one(b, base))
+        return (equal_one(a, base) ? copy_number(b) : copy_number(a));
     if (a->len - 1 < 80 && b->len - 1 < 80)
-        result = mulNums(a, b, base);
+        result = mul_nums(a, b, base);
     else
         result = karatsuba_mul(a, b, base, all);
     return (result);

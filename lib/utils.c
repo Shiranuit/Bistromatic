@@ -6,8 +6,8 @@
 */
 
 #include <stdio.h>
-#include "all.h"
 #include <unistd.h>
+#include "all.h"
 
 int my_strncmp(char const *s1, char const *s2, int n)
 {
@@ -36,4 +36,11 @@ char *create_char(int size, base_t *base)
         data[i] = int_to_base(0, base);
     data[size - 1] = '\0';
     return (data);
+}
+
+void *free_number2(number_t *a, number_t *b)
+{
+    free_number(a);
+    free_number(b);
+    return (0);
 }

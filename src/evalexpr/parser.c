@@ -44,7 +44,7 @@ number_t *parse_expression(char **str, int lvl, operator_t **ls, all_t *all)
     else
         left = parse_unm(str, ls, all);
     while ((op = readoplevel(str, lvl, ls, all)) && *(all->exit) == -1) {
-         right = parse_expression(str, lvl + 1, ls, all);
+        right = parse_expression(str, lvl + 1, ls, all);
         if (*(all->exit) > -1)
             return (free_number2(left, right));
         result = op->func(left, right, all->base, all);

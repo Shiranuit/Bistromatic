@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** difinf
+** File description:
+** infinite division
+*/
+
 #include "all.h"
 
 int struct_ncmp(number_t *a, number_t *b, base_t *base, int mv)
@@ -36,13 +43,13 @@ number_t *do_div(number_t *a, number_t *b, base_t *base)
             mul_add(result, cnt, base, mv + 1);
             res = 0;
         }
-         if (mv > -1 && struct_ncmp(a, b, base, mv) >= 0) {
+        if (mv > -1 && struct_ncmp(a, b, base, mv) >= 0) {
             div_sub(a, b, base, mv);
             res++;
         }
     }
     free_number(cnt);
-    return(result);
+    return (result);
 }
 
 number_t *divinf(number_t *a, number_t *b, base_t *base, all_t *all)
@@ -50,7 +57,7 @@ number_t *divinf(number_t *a, number_t *b, base_t *base, all_t *all)
     number_t *result;
     int cmp = struct_cmp(a, b, base);
 
-    if (equalZero(b, base))
+    if (equal_zero(b, base))
         return (exception(ERROR_MSG, all));
     if (cmp == -1)
         return (create_zero(base));

@@ -7,7 +7,7 @@
 
 #include "all.h"
 
-int equalZero(number_t *a, base_t *base)
+int equal_zero(number_t *a, base_t *base)
 {
     if (a->len <= 0)
         return (1);
@@ -17,7 +17,7 @@ int equalZero(number_t *a, base_t *base)
     return (0);
 }
 
-int equalOne(number_t *a, base_t *base)
+int equal_one(number_t *a, base_t *base)
 {
     clear_zero(a, base);
     if (a->len == 2 && a->str[0] == base->base[1])
@@ -42,14 +42,6 @@ number_t *create_one(base_t *base)
     new_str[1] = '\0';
     return (create_number(new_str, 2, 0, 2));
 }
-
-void *free_number2(number_t *a, number_t *b)
-{
-    free_number(a);
-    free_number(b);
-    return (0);
-}
-
 
 number_t *copy_number(number_t *a)
 {

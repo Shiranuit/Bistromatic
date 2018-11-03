@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** karatsuba_header
+** File description:
+** karatsuba object
+*/
+
 #ifndef KARATSUBA_H
 #define KARATSUBA_H
 

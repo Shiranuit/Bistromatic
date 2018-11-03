@@ -12,7 +12,7 @@ SRC	=	./src/main.c	\
 		./src/evalexpr/*.c	\
 		./src/operators/infadd_sub/*.c	\
 		./src/operators/mulinf/*.c	\
-        ./src/operators/div_mod_inf/divinf.c \
+        ./src/operators/div_mod_inf/*.c \
 		./src/operators/*.c	\
 		./src/evalexpr/exceptions/*.c
 

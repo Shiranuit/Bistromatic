@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** div_sub
+** File description:
+** specific substraction
+*/
+
 #include "all.h"
 
 void div_sub(number_t *a, number_t *b, base_t *base, int mv)

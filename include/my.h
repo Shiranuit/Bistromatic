@@ -18,6 +18,6 @@ void my_putstr(char const *);
 int my_strlen(char const *);
 int put_error(char *);
 int my_strncmp(char const *, char const *, int);
-int my_getnbr(char const *str);
+int my_getnbr(char const *);
 
 #endif /* MY_H_ */

@@ -32,7 +32,7 @@ number_t *called_min(number_t *a, number_t *b, int use_sign, base_t *base)
         return (a);
     if (a->neg == 0 && b->neg == 1 && use_sign == 1)
         return (b);
-    if (struct_cmp(a,b,base) == -1) {
+    if (struct_cmp(a, b, base) == -1) {
         return (a);
     } else {
         return (b);
@@ -48,7 +48,7 @@ number_t *called_max(number_t *a, number_t *b, int use_sign, base_t *base)
         return (a);
     if (a->neg == 1 && b->neg == 0 && use_sign == 1)
         return (b);
-    if (struct_cmp(a,b,base) == 1) {
+    if (struct_cmp(a, b, base) == 1) {
         return (a);
     } else {
         return (b);

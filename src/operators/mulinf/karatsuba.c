@@ -63,5 +63,5 @@ number_t *karatsuba_mul(number_t *a, number_t *b, base_t *base, all_t *all)
     mul_add(result, kara->res, base, h);
     mul_add(result, kara->abLow, base, 0);
     free_karatsuba(kara);
-    return(result);
+    return (result);
 }
