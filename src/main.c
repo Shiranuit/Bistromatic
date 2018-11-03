@@ -7,7 +7,7 @@
 
 #include "../include/all.h"
 
-static char  *get_expr(unsigned int size)
+static char *get_expr(unsigned int size)
 {
     char *expr;
 
