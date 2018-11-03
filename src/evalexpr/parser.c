@@ -61,9 +61,13 @@ number_t *parse_unm(char **str, operator_t **list, all_t *all)
     if (*(all->exit) > -1)
         return (0);
     skip_space(str);
-    if ((*str)[0] == '-') {
+    if ((*str)[0] == all->ops[OP_SUB_IDX]) {
         move(str, 1);
         return (unm(parse_unm(str, list, all), all));
+    }
+    if ((*str)[0] == all->ops[OP_PLUS_IDX]) {
+        move(str, 1);
+        return (parse_unm(str, list, all));
     }
     return (parse_val(str, list, all));
 }
