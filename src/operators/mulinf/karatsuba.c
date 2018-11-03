@@ -37,10 +37,10 @@ void free_karatsuba(karatsuba_t *kara)
 
 void setup_uplow(number_t *a, number_t *b, karatsuba_t *kara, int half)
 {
-    kara->aHigh = getUpper(a, half);
-    kara->aLow = getLower(a, half);
-    kara->bHigh = getUpper(b, half);
-    kara->bLow = getLower(b, half);
+    kara->aHigh = get_upper(a, half);
+    kara->aLow = get_lower(a, half);
+    kara->bHigh = get_upper(b, half);
+    kara->bLow = get_lower(b, half);
 }
 
 number_t *karatsuba_mul(number_t *a, number_t *b, base_t *base, all_t *all)
