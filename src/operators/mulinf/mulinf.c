@@ -65,7 +65,7 @@ number_t *recmul(number_t *a, number_t *b, base_t *base, all_t *all)
         return (create_zero(base));
     if (equal_one(a, base) || equal_one(b, base))
         return (equal_one(a, base) ? copy_number(b) : copy_number(a));
-    if (a->len - 1 < 80 && b->len - 1 < 80)
+    if (a->len - 80 < 2 && b->len - 80 < 2)
         result = mul_nums(a, b, base);
     else
         result = karatsuba_mul(a, b, base, all);
