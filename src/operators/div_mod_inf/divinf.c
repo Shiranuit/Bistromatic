@@ -38,8 +38,8 @@ number_t *do_div(number_t *a, number_t *b, base_t *base)
     while (mv > -1) {
         if  (struct_ncmp(a, b, base, mv) == -1) {
             mv--;
-            count[1] = int_to_base(res % base->len, base);
-            count[0] = int_to_base(res / base->len, base);
+            cnt->str[1] = int_to_base(res % base->len, base);
+            cnt->str[0] = int_to_base(res / base->len, base);
             mul_add(result, cnt, base, mv + 1);
             res = 0;
         }

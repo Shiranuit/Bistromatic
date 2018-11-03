@@ -49,6 +49,7 @@ number_t *eval_expr(char *base_v, char *ops, char *expr, base_t *base)
     free(all->origin);
     free(all);
     if (exitcode > -1) {
+        free(base);
         free_number(result);
         exit(exitcode);
     }
