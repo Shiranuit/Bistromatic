@@ -36,10 +36,9 @@ void init_var_expr(base_t *base, all_t *all, char *base_v, char *expr)
     all->paranthesis = 0;
 }
 
-number_t *eval_expr(char *base_v, char *ops, char *expr)
+number_t *eval_expr(char *base_v, char *ops, char *expr, base_t *base)
 {
     all_t *all = malloc(sizeof(all_t));
-    base_t *base = malloc(sizeof(base_t));
     number_t *result;
     int exitcode = -1;
 
@@ -47,7 +46,6 @@ number_t *eval_expr(char *base_v, char *ops, char *expr)
     all->exit = &exitcode;
     init_var_expr(base, all, base_v, expr);
     result = parse(&expr, all);
-    free(base);
     free(all->origin);
     free(all);
     if (exitcode > -1) {

@@ -10,6 +10,8 @@
 
 int struct_cmp(number_t *a, number_t *b, base_t *base)
 {
+    clear_zero(a, base);
+    clear_zero(b, base);
     if (a->len > b->len)
         return (1);
     if (a->len < b->len)

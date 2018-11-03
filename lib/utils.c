@@ -17,15 +17,12 @@ int my_strncmp(char const *s1, char const *s2, int n)
     return (1);
 }
 
-void print_number(number_t *a)
+void print_number(number_t *a, base_t *base)
 {
-    if (a->neg == 1 && a->len > 1 && a->str[0] != '0')
+    if (a->neg && !equal_zero(a, base))
         write(1, "-", 1);
-    if (a->len > 1)
-        write(1, a->str, a->len - 1);
-    else
-        write(1, "0", 1);
-    write(1, "\n", 1);
+    write(1, a->str, a->len - 1);
+    //write(1, "\n", 1);
 }
 
 char *create_char(int size, base_t *base)

@@ -5,7 +5,8 @@
 ** main
 */
 
-#include "../include/all.h"
+#include "all.h"
+#include <stdlib.h>
 
 static char *get_expr(unsigned int size)
 {
@@ -48,6 +49,7 @@ static void check_base(char const *b)
 
 int main(int ac, char **av)
 {
+    base_t *base = malloc(sizeof(base_t));
     uint size;
     char *expr;
     number_t *result = NULL;
@@ -61,8 +63,9 @@ int main(int ac, char **av)
     check_ops(av[2]);
     size = my_getnbr(av[3]);
     expr = get_expr(size);
-    result = eval_expr(av[1], av[2], expr);
-    print_number(result);
+    result = eval_expr(av[1], av[2], expr, base);
+    print_number(result, base);
+    free(base);
     free(result->origin);
     free(result);
     return (EXIT_SUCCESS);

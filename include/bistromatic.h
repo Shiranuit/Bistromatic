@@ -31,6 +31,6 @@
 #define ERROR_MSG        "error"
 #define ERROR_INVALID_EXPR "invalid expr"
 
-number_t *eval_expr(char *base, char *ops, char *expr);
+number_t *eval_expr(char *, char *, char *, base_t *);
 
 #endif /* BISTROMATIC_H */
