@@ -22,7 +22,6 @@ void print_number(number_t *a, base_t *base)
     if (a->neg && !equal_zero(a, base))
         write(1, "-", 1);
     write(1, a->str, a->len - 1);
-    //write(1, "\n", 1);
 }
 
 char *create_char(int size, base_t *base)
