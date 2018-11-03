@@ -7,14 +7,14 @@
 
 #include "all.h"
 
-number_t *getLower(number_t *a, int n)
+number_t *get_lower(number_t *a, int n)
 {
     if (a->len - 1 <= n)
         return (create_number(a->str, a->len, 0, 1));
     return (create_number(a->str + a->len - n - 1, n + 1, 0, 1));
 }
 
-number_t *getUpper(number_t *a, int n)
+number_t *get_upper(number_t *a, int n)
 {
     if (a->len - 1 <= n)
         return (create_number(a->str, 0, 0, 1));
