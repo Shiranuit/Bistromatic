@@ -27,10 +27,10 @@ void register_test(char *name, char *desc, void (*func)(void))
     list = new_test;
 }
 
-void end_test(int count, int success, int fail, int crash)
+void end_test(int success, int fail, int crash)
 {
     mwrite("[\x1B[34m====\x1B[0m] Synthesis: Tested: \x1B[34m");
-    mwrite_int(count);
+    mwrite_int(success + fail + crash);
     mwrite("\x1B[0m | Passing: \x1B[32m");
     if (success <= 0)
         mwrite("\x1B[0m");
@@ -46,17 +46,25 @@ void end_test(int count, int success, int fail, int crash)
     mwrite("\n");
 }
 
+void loadSignals(void)
+{
+    signal(SIGSEGV, segfault);
+    signal(SIGILL, segfault);
+    signal(SIGFPE, segfault);
+    signal(SIGBUS, segfault);
+}
+
 void exec_test(void)
 {
-    int count = 0;
+    test_t *next;
+
     running = list;
-
     while (running) {
-        count++;
-        signal(SIGSEGV, segfault);
+        loadSignals();
         running->func();
-
-        running = running->next;
+        next = running->next;
+        free(running);
+        running = next;
     }
-    end_test(count, success, fail, crash);
+    end_test(success, fail, crash);
 }

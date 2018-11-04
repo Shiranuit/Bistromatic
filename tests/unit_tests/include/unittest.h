@@ -18,9 +18,13 @@ typedef struct test_s {
 } test_t;
 
 void segfault(int);
+void illeg_instruction(int);
+void arithmerror(int);
+void buserror(int);
+
 void exec_test(void);
 void register_test(char *, char *, void (*)(void));
-void end_test(int, int, int, int);
+void end_test(int, int, int);
 
 extern test_t *list;
 extern test_t *running;
