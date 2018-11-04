@@ -10,6 +10,8 @@ NAME	=	calc
 SRC	=	./src/main.c	\
 		./lib/*.c	\
 		./src/evalexpr/*.c	\
+		./src/operators/logic/*.c	\
+		./src/operators/comparison/*.c	\
 		./src/operators/infadd_sub/*.c	\
 		./src/operators/mulinf/*.c	\
         ./src/operators/div_mod_inf/*.c \
