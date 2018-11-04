@@ -24,24 +24,27 @@ int struct_ncmp(number_t *a, number_t *b, base_t *base, int mv)
     return (0);
 }
 
+void small_int_to_number(number_t *a, int *res, base_t *base)
+{
+    a->str[1] = int_to_base(*res % base->len, base);
+    a->str[0] = int_to_base(*res / base->len, base);
+    *res = 0;
+}
+
 number_t *do_div(number_t *a, number_t *b, base_t *base)
 {
     int mv = a->len - b->len - 1;
     char *new_str = create_char(a->len + 1, base);
-    char *count = create_char(3, base);
     number_t *result = create_number(new_str, a->len + 1, 0, 2);
-    number_t *cnt = create_number(count, 3, 0, 2);
+    number_t *cnt = create_number(create_char(3, base), 3, 0, 2);
     int res = 0;
 
     mv = struct_ncmp(a, b, base, mv + 1) == 1 ? mv + 1 : mv;
-    count[2] = '\0';
     while (mv > -1) {
         if  (struct_ncmp(a, b, base, mv) == -1) {
             mv--;
-            cnt->str[1] = int_to_base(res % base->len, base);
-            cnt->str[0] = int_to_base(res / base->len, base);
+            small_int_to_number(cnt, &res, base);
             mul_add(result, cnt, base, mv + 1);
-            res = 0;
         }
         if (mv > -1 && struct_ncmp(a, b, base, mv) >= 0) {
             div_sub(a, b, base, mv);
