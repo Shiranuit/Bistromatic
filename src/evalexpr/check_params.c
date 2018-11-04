@@ -21,7 +21,7 @@ void check_base(base_t *base, all_t *all)
 
     while (base->base[i]) {
         j = i + 1;
-        while (base->base[j + 1]) {
+        while (base->base[j]) {
             error_params(base->base[j], base->base[i], all);
             j++;
         }
