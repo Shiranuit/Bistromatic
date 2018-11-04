@@ -30,12 +30,10 @@ number_t *modinf(number_t *a, number_t *b, base_t *base, all_t *all)
 
     if (equal_zero(b, base))
         return (exception(ERROR_MSG, all));
-    if (cmp == -1)
-        return (create_zero(base));
     if (cmp == 0)
-        return (create_one(base));
+        return (create_zero(base));
     result = copy_number(do_mod(a, b, base));
-    result->neg = a->neg ^ b->neg;
+    result->neg = b->neg;
     free_number2(a, b);
     return (result);
 }
