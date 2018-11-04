@@ -20,13 +20,12 @@ base_t *init_base(char *base_v)
 all_t *init_all(char *expr, base_t *base, int *exit)
 {
     all_t *all = malloc(sizeof(all_t));
-    int exitcode = -1;
 
     all->origin = expr;
     all->base = base;
     all->paranthesis = 0;
     all->base = base;
     all->ops = "()+-*/%";
-    all->exit = &exitcode;
+    all->exit = exit;
     return (all);
 }

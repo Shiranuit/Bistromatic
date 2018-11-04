@@ -32,6 +32,7 @@ int ut_assert(int cmp)
         mwrite("[\x1B[34m----\x1B[0m] ");
         mwrite(running->name);
         mwrite(": Assertion failed");
+        mwrite("\n");
     }
     return (0);
 }

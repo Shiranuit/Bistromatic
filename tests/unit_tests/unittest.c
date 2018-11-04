@@ -49,9 +49,9 @@ void end_test(int success, int fail, int crash)
 void loadSignals(void)
 {
     signal(SIGSEGV, segfault);
-    signal(SIGILL, segfault);
-    signal(SIGFPE, segfault);
-    signal(SIGBUS, segfault);
+    signal(SIGILL, illeg_instruction);
+    signal(SIGFPE, arithmerror);
+    signal(SIGBUS, buserror);
 }
 
 void exec_test(void)

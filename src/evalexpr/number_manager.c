@@ -55,7 +55,7 @@ number_t *string_to_number(char **str, base_t *base, all_t *all)
 
     while ((*str)[index] && base_to_int((*str)[index], base) > -1)
         index++;
-    if (base_to_int((*str)[index], base) == -1)
+    if ((*str)[index] && base_to_int((*str)[index], base) == -1)
         return (exception(SYNTAX_ERROR_MSG, all));
     new_str = malloc(sizeof(char) * (index + 1));
     for (int i = 0; i < index; i++)
