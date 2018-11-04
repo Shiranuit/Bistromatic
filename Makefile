@@ -21,7 +21,7 @@ $(NAME):
 	gcc -Wall -Wextra -Werror ./src/main.c $(SRC) -I./include -o $(NAME) -g
 
 test: fclean
-	gcc -Wall -Wextra -Werror ./tests/*.c ./tests/unit_tests/*.c $(SRC) -I./include -I./tests/unit_tests/include -o $(NAME) -g
+	gcc -Wall -Wextra -Werror ./tests/*.c ./tests/unit_tests/*.c $(SRC) -I./include -I./tests/unit_tests/include -I./tests/include -o $(NAME) -g
 
 clean:
 	rm -rf *.o
