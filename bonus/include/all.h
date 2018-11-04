@@ -7,7 +7,8 @@
 
 #ifndef ALL_H
 #define ALL_H
-#include "number_manager.h"
+
+#include "base.h"
 
 typedef struct all_s {
     base_t *base;
@@ -17,6 +18,7 @@ typedef struct all_s {
     int *exit;
 } all_t;
 
+#include "number_manager.h"
 #include "called_func.h"
 #include "operator.h"
 #include "convert_base.h"

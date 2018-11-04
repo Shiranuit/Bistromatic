@@ -9,7 +9,7 @@
 #define OPERATOR_H
 #include "number_manager.h"
 
-static int const OPLVMAX = 3;
+static int const OPLVMAX = 1;
 #define OPERAND number_t *(*func)(number_t *, number_t *, base_t *, all_t *)
 
 typedef struct operator {
@@ -27,13 +27,6 @@ number_t *mul(number_t *, number_t *, base_t *, all_t *);
 number_t *karatsuba_mul(number_t *, number_t *, base_t *, all_t *);
 number_t *divinf(number_t *, number_t *, base_t *, all_t *);
 number_t *modinf(number_t *, number_t *, base_t *, all_t *);
-number_t *equal(number_t *, number_t *, base_t *, all_t *);
-number_t *greater_than(number_t *, number_t *, base_t *, all_t *);
-number_t *less_than(number_t *, number_t *, base_t *, all_t *);
-number_t *greater_or_equal(number_t *, number_t *, base_t *, all_t *);
-number_t *less_or_equal(number_t *, number_t *, base_t *, all_t *);
-number_t *and(number_t *, number_t *, base_t *, all_t *);
-number_t *or(number_t *, number_t *, base_t *, all_t *);
 number_t *unm(number_t *, all_t *);
 
 #endif /* OPERATOR_H */
