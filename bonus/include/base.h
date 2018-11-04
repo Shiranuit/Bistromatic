@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** base.h
+** File description:
+** base.h
+*/
+
 #ifndef BASE_H
 #define BASE_H
 
