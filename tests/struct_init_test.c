@@ -24,6 +24,7 @@ all_t *init_all(char *expr, base_t *base)
     all->origin = expr;
     all->base = base;
     all->paranthesis = 0;
-    all->ops = base->base;
+    all->base = base;
+    all->ops = "()+-*/%"
     all->exit = &exitcode;
 }
