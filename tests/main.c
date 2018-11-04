@@ -24,5 +24,12 @@ int main(void)
     register_test("skip_whitespace", "check_whitesp", &test_skip_whitespace);
     register_test("int_to_base", "check_int_to_base", &test_int_to_base);
     register_test("base_to_int", "check_base_to_int", &test_base_to_int);
+    register_test("mul", "multiplication", &test_mul);
+    register_test("mulnums", "basic_mul", &test_mulnums);
+    register_test("mulnums", "big_mul", &test_mulnums_big);
+    register_test("mul_add", "check_base_to_int", &test_mul_add);
+    register_test("karatsuba", "karatsuba_mul", &test_karatsuba_mul);
+    register_test("eval_expr", "add_basic", &test_eval_expr1);
+    register_test("eval_expr", "sub_basic", &test_eval_expr2);
     exec_test();
 }

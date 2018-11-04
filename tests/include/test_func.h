@@ -19,5 +19,12 @@ void test_move(void);
 void test_skip_whitespace(void);
 void test_base_to_int(void);
 void test_int_to_base(void);
+void test_mul_add(void);
+void test_mulnums_big(void);
+void test_mulnums(void);
+void test_karatsuba_mul(void);
+void test_eval_expr1(void);
+void test_eval_expr2(void);
+void test_mul(void);
 
 #endif // TEST_FUNC_H
