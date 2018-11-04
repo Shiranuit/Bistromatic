@@ -16,7 +16,7 @@ int success;
 int fail;
 int crash;
 
-void registerTest(char *name, char *desc, void (*func)(void))
+void register_test(char *name, char *desc, void (*func)(void))
 {
     test_t *new_test = malloc(sizeof(test_t));
 
@@ -27,7 +27,7 @@ void registerTest(char *name, char *desc, void (*func)(void))
     list = new_test;
 }
 
-void endTest(int count, int success, int fail, int crash)
+void end_test(int count, int success, int fail, int crash)
 {
     mwrite("[\x1B[34m====\x1B[0m] Synthesis: Tested: \x1B[34m");
     mwrite_int(count);
@@ -46,7 +46,7 @@ void endTest(int count, int success, int fail, int crash)
     mwrite("\n");
 }
 
-void execTest(void)
+void exec_test(void)
 {
     int count = 0;
     running = list;
@@ -56,7 +56,7 @@ void execTest(void)
         signal(SIGSEGV, segfault);
         running->func();
 
-        running = list->next;
+        running = running->next;
     }
-    endTest(count, success, fail, crash);
+    end_test(count, success, fail, crash);
 }

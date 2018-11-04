@@ -18,9 +18,9 @@ typedef struct test_s {
 } test_t;
 
 void segfault(int);
-void execTest(void);
-void registerTest(char *, char *, void (*)(void));
-void endTest(int, int, int, int);
+void exec_test(void);
+void register_test(char *, char *, void (*)(void));
+void end_test(int, int, int, int);
 
 extern test_t *list;
 extern test_t *running;
