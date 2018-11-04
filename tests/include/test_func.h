@@ -14,5 +14,10 @@ void test_string_to_number(void);
 void test_free_number(void);
 void test_clear_zero(void);
 void test_create_number(void);
+void test_readc(void);
+void test_move(void);
+void test_skip_whitespace(void);
+void test_base_to_int(void);
+void test_int_to_base(void);
 
 #endif // TEST_FUNC_H

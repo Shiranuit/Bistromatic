@@ -34,6 +34,8 @@ void test_clear_zero(void)
         ut_assert_str_eq(a->str, "6890");
         free_number(a);
     }
+    free(base);
+    free(all);
     ut_assert(exitcode == -1);
 }
 
@@ -64,6 +66,8 @@ void test_string_to_number(void)
         ut_assert_str_eq(a->str, "45789876434567655046298933440791355308923");
         free_number(a);
     }
+    free(base);
+    free(all);
     ut_assert(exitcode == -1);
 }
 
@@ -79,5 +83,7 @@ void test_get_num(void)
         ut_assert(get_num(a, 0, base) == 3);
         free_number(a);
     }
+    free(base);
+    free(all);
     ut_assert(exitcode == -1);
 }

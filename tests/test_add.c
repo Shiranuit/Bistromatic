@@ -25,6 +25,8 @@ void test_add(void)
         ut_assert_str_eq(result->str, "40");
         free_number(result);
     }
+    free(base);
+    free(all);
     ut_assert(exitcode == -1);
 }
 
@@ -44,6 +46,8 @@ void test_add_big(void)
         ut_assert_str_eq(result->str, "45789876434567655046298933440791355308923");
         free_number(result);
     }
+    free(base);
+    free(all);
     ut_assert(exitcode == -1);
 }
 
@@ -64,6 +68,8 @@ void test_called_add(void)
         free_number2(a, b);
         free_number(result);
     }
+    free(base);
+    free(all);
     ut_assert(exitcode == -1);
 }
 
@@ -84,5 +90,7 @@ void test_called_add_big(void)
         free_number2(a, b);
         free_number(result);
     }
+    free(base);
+    free(all);
     ut_assert(exitcode == -1);
 }
