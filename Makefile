@@ -7,8 +7,7 @@
 
 NAME	=	calc
 
-SRC	=	./src/main.c	\
-		./lib/*.c	\
+SRC	=	./lib/*.c	\
 		./src/evalexpr/*.c	\
 		./src/operators/infadd_sub/*.c	\
 		./src/operators/mulinf/*.c	\
@@ -19,8 +18,10 @@ SRC	=	./src/main.c	\
 all: $(NAME)
 
 $(NAME):
-	gcc -Wall -Wextra -Werror $(SRC) -I./include -o $(NAME) -g
+	gcc -Wall -Wextra -Werror ./src/main.c $(SRC) -I./include -o $(NAME) -g
 
+test: fclean
+	gcc -Wall -Wextra -Werror ./tests/*.c ./tests/unit_tests/*.c $(SRC) -I./include -I./tests/unit_tests/include -o $(NAME) -g
 clean:
 	rm -rf *.o
 

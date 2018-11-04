@@ -6,6 +6,7 @@
 */
 
 #include "all.h"
+#include <stdio.h>
 
 void *error_params(char a, char b, all_t *all)
 {
@@ -19,7 +20,7 @@ void check_base(base_t *base, all_t *all)
     int i = 0;
     int j;
 
-    while (base->base[i]) {
+    while (base->base[i + 1]) {
         j = i + 1;
         while (base->base[j]) {
             error_params(base->base[j], base->base[i], all);
@@ -47,10 +48,10 @@ void check_operator(char *ops, all_t *all)
 void check_base_in_operator(base_t *base, char *ops, all_t *all)
 {
     int i = 0;
-    int j;
+    int j = 0;
 
     while (base->base[i]) {
-        j = i;
+        j = 0;
         while (ops[j]) {
             error_params(ops[j], base->base[i], all);
             j++;
