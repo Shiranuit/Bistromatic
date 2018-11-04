@@ -19,6 +19,8 @@ int main(void)
     register_test("create_number", "check_create_number", &test_called_add);
     register_test("get_num", "check_get_num", &test_called_add);
     register_test("string_to_number", "check_string_to_num", &test_called_add);
+    register_test("sub", "basic_sub", &test_sub);
+    register_test("sub", "sub_neg", &test_sub2);
     register_test("readc", "check_readc", &test_readc);
     register_test("move", "check_move", &test_move);
     register_test("skip_whitespace", "check_whitesp", &test_skip_whitespace);
