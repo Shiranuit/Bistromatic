@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** test_func_header
+** File description:
+** test_func_header
+*/
+
 #ifndef TEST_FUNC_H
 #define TEST_FUNC_H
 #include "all.h"
@@ -28,5 +35,6 @@ void test_karatsuba_mul(void);
 void test_eval_expr1(void);
 void test_eval_expr2(void);
 void test_mul(void);
+void test_eval_expr4(void);
 
 #endif // TEST_FUNC_H

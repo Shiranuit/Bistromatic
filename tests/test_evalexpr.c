@@ -41,3 +41,19 @@ void test_eval_expr2(void)
     free(ops);
     free(b);
 }
+
+void test_eval_expr4(void)
+{
+    char *b = strdup("0123456789");
+    char *ops = strdup("()+-*/%");
+    char *expr = strdup("-----6*12");
+    base_t *base = init_base(b);
+    number_t *result = eval_expr(b, ops, expr, base);
+
+    ut_assert_str_eq(result->str, "72");
+    ut_assert(result->neg == 1);
+    free_number(result);
+    free(base);
+    free(ops);
+    free(b);
+}

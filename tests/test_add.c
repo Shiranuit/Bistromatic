@@ -43,7 +43,8 @@ void test_add_big(void)
 
     if (exitcode == -1) {
         result = add(a, b, base, all);
-        ut_assert_str_eq(result->str, "45789876434567655046298933440791355308923");
+        ut_assert_str_eq(result->str,
+        "45789876434567655046298933440791355308923");
         free_number(result);
     }
     free(base);
@@ -86,7 +87,8 @@ void test_called_add_big(void)
 
     if (exitcode == -1) {
         result = called_add(a, b, base);
-        ut_assert_str_eq(result->str, "45789876434567655046298933440791355308923");
+        ut_assert_str_eq(result->str,
+        "45789876434567655046298933440791355308923");
         free_number2(a, b);
         free_number(result);
     }

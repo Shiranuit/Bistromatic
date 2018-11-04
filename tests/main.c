@@ -8,7 +8,7 @@
 #include "test_func.h"
 #include "unittest.h"
 
-int main(void)
+void register_tests1(void)
 {
     register_test("add", "basic_add", &test_add);
     register_test("called_add", "basic_add", &test_called_add);
@@ -30,8 +30,18 @@ int main(void)
     register_test("mulnums", "basic_mul", &test_mulnums);
     register_test("mulnums", "big_mul", &test_mulnums_big);
     register_test("mul_add", "check_base_to_int", &test_mul_add);
+}
+
+void register_tests2(void) {
     register_test("karatsuba", "karatsuba_mul", &test_karatsuba_mul);
     register_test("eval_expr", "add_basic", &test_eval_expr1);
     register_test("eval_expr", "sub_basic", &test_eval_expr2);
+    register_test("eval_expr", "unary_test", &test_eval_expr4);
+}
+
+int main(void)
+{
+    register_tests1();
+    register_tests2();
     exec_test();
 }
