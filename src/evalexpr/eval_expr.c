@@ -45,6 +45,7 @@ number_t *eval_expr(char *base_v, char *ops, char *expr, base_t *base)
     all->ops = ops;
     all->exit = &exitcode;
     init_var_expr(base, all, base_v, expr);
+    check_params(base, ops, all);
     result = parse(&expr, all);
     free(all->origin);
     free(all);
