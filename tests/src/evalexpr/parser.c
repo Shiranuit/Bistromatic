@@ -89,7 +89,7 @@ number_t *parse_val(char **str, operator_t **list, all_t *all)
         return (exception(SYNTAX_ERROR_MSG, all));
     if ((*str)[0] == '\0')
         return (exception(SYNTAX_ERROR_MSG, all));
-    return (string_to_number(str, all->base, all, list));
+    return (string_to_number(str, all->base, all));
 }
 
 number_t *parse(char **str, all_t *all)

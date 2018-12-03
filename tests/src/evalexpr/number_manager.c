@@ -48,7 +48,7 @@ number_t *clear_zero(number_t *a, base_t *base)
     return (a);
 }
 
-number_t *string_to_number(char **str, base_t *base, all_t *all, operator_t **list)
+number_t *string_to_number(char **str, base_t *base, all_t *all)
 {
     int index = 0;
     char *new_str;
@@ -57,8 +57,8 @@ number_t *string_to_number(char **str, base_t *base, all_t *all, operator_t **li
     while ((*str)[index] && base_to_int((*str)[index], base) > -1)
         index++;
     if ((*str)[index] && base_to_int((*str)[index], base) == -1) {
-        for (int i = 0; list[i] && !skip; i++)
-            if (my_strncmp(*str + index, list[i]->op, list[i]->length))
+        for (int i = 0; all->ops[i] && !skip; i++)
+            if ((*str)[index] == all->ops[i])
                 skip = 1;
         if (!skip)
             return (exception(SYNTAX_ERROR_MSG, all));

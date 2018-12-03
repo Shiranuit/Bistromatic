@@ -21,11 +21,10 @@ $(NAME):
 	gcc -Wall -Wextra -Werror ./src/main.c $(SRC) -I./include -o $(NAME) -g
 
 test: fclean
-	gcc -Wall -Wextra -Werror ./tests/*.c ./tests/unit_tests/*.c $(SRC) -I./include -I./tests/unit_tests/include -I./tests/include --coverage -o $(NAME)
+	gcc -Wall -Wextra -Werror ./tests/*.c ./tests/unit_tests/*.c $(SRC) -I./include -I./tests/unit_tests/include -I./tests/include -o $(NAME) -g --coverage
 
 clean:
 	rm -rf *.o
-	rm -rf *.gc*
 
 fclean: clean
 	rm -rf $(NAME)

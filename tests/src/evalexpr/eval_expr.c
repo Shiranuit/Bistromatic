@@ -18,9 +18,8 @@ void free_list(operator_t **list)
 void init_var_expr(base_t *base, all_t *all, char *base_v, char *expr)
 {
     operator_t **list = init_oplist(all->ops);
-    for (int i = 0; list[i]; i++) {
-        if (my_strncmp(list[i]->op, expr, list[i]->length) == 1 &&
-            i != 7 && i != 8) {
+    for (int i = 2; list[i]; i++) {
+        if (my_strncmp(list[i]->op, expr, list[i]->length) == 1) {
             exception(SYNTAX_ERROR_MSG, all);
             free_list(list);
             free(base);
